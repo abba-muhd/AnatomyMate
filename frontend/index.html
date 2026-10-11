@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AnatomyMate.ai — Your AI Human Anatomy Tutor</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Markdown renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+
+<div id="auth-section" class="auth-section">
+    <div class="auth-card">
+        <h1>🧠 AnatomyMate.ai</h1>
+        <p>Your personal Human Anatomy learning companion</p>
+
+        <div class="auth-tabs">
+            <button id="show-login" class="auth-tab active">
+                Login
+            </button>
+            <button id="show-register" class="auth-tab">
+                Create Account
+            </button>
+        </div>
+
+        <form id="login-form">
+            <h2>Welcome Back!</h2>
+
+            <label for="login-email">Email Address</label>
+            <input
+                id="login-email"
+                type="email"
+                placeholder="Enter your email"
+                required
+            />
+
+            <label for="login-password">Password</label>
+            <input
+                id="login-password"
+                type="password"
+                placeholder="Enter your password"
+                required
+            />
+
+            <button type="submit" class="auth-submit">
+                Login
+            </button>
+        </form>
+
+        <form id="register-form" style="display: none;">
+            <h2>Create Your Account</h2>
+
+            <label for="register-name">Full Name</label>
+            <input
+                id="register-name"
+                type="text"
+                placeholder="Enter your full name"
+                required
+            />
+
+            <label for="register-email">Email Address</label>
+            <input
+                id="register-email"
+                type="email"
+                placeholder="Enter your email"
+                required
+            />
+
+            <label for="register-password">Password</label>
+            <input
+                id="register-password"
+                type="password"
+                placeholder="At least 6 characters"
+                minlength="6"
+                required
+            />
+
+            <button type="submit" class="auth-submit">
+                Create Account
+            </button>
+        </form>
+
+        <p id="auth-message" role="status"></p>
+    </div>
+</div>
+
+<div id="app-content" style="display: none;">
+    <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">🧠</div>
+
+            <div>
+                <h1>Anatomy<span>Mate</span>.ai</h1>
+                <p>Your AI Human Anatomy Tutor</p>
+            </div>
+                </div>
+
+        <div class="header-actions">
+            <p id="student-welcome" class="student-welcome">
+                Welcome!
+            </p>
+            <button id="logout-button" type="button">
+                Log Out
+            </button>
+        </div>
+
+    
+    </header>
+
+    <!-- Admin Dashboard: hidden unless the backend confirms admin access -->
+    <section id="admin-dashboard" class="admin-dashboard" hidden>
+        <div class="admin-dashboard-header">
+            <div>
+                <h2>Admin Dashboard</h2>
+                <p>Manage and review registered AnatomyMate students.</p>
+            </div>
+            <button id="admin-refresh-button" type="button">
+                Refresh Students
+            </button>
+        </div>
+
+        <div class="admin-summary">
+            <div class="admin-summary-card">
+                <span>Total Registered Students</span>
+                <strong id="admin-student-count">0</strong>
+            </div>
+        </div>
+
+        <label for="admin-student-search">Search students</label>
+        <input
+            id="admin-student-search"
+            type="search"
+            placeholder="Search by name or email..."
+        >
+
+        <p id="admin-status" role="status" aria-live="polite"></p>
+
+        <div class="admin-table-wrapper">
+            <table class="admin-students-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Registered</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-students-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <div class="badge">
+            🧬 AI-Powered Anatomy Learning
+        </div>
+
+        <h2>
+            Learn Human Anatomy <span>Smarter.</span>
+        </h2>
+
+        <p>
+            Ask questions, understand complex anatomical concepts,
+            prepare for exams, and learn Human Anatomy with your personal
+            AI tutor.
+        </p>
+
+    </section>
+
+
+    <!-- Topics -->
+    <section class="topics">
+
+        <div class="topic-card">
+            <div class="icon">🧠</div>
+            <h3>Neuroanatomy</h3>
+            <p>Brain, spinal cord and nervous system</p>
+        </div>
+
+        <div class="topic-card">
+            <div class="icon">🦴</div>
+            <h3>Osteology</h3>
+            <p>Bones, joints and skeletal anatomy</p>
+        </div>
+
+        <div class="topic-card">
+            <div class="icon">❤️</div>
+            <h3>Cardiovascular</h3>
+            <p>Heart and blood vessels</p>
+        </div>
+
+        <div class="topic-card">
+            <div class="icon">🔬</div>
+            <h3>Histology</h3>
+            <p>Tissues and microscopic anatomy</p>
+        </div>
+
+    </section>
+
+
+    <!-- Chat -->
+    <main class="chat-container">
+
+        <div class="chat-header">
+
+            <div class="status-dot"></div>
+
+            <div>
+                <strong>AnatomyMate AI</strong><br>
+                <span>Online • Ready to answer your questions</span>
+            </div>
+
+        </div>
+
+
+        <div id="chat-messages">
+
+            <div class="message bot">
+
+                <strong>Hello! 👋</strong>
+
+                <p>
+                    I'm AnatomyMate, your AI Human Anatomy Tutor.
+                </p>
+
+                <p>
+                    Ask me anything about anatomy. For example:
+                </p>
+
+                <ul>
+                    <li>Explain the brachial plexus.</li>
+                    <li>What are the branches of the external carotid artery?</li>
+                    <li>Explain the nephron.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+<div class="chat-input">
+    <form id="chat-form">
+        <input
+            type="text"
+            id="user-input"
+            placeholder="Ask me anything about human anatomy..."
+        >
+        <button type="submit">Send</button>
+    </form>
+</div>
+        
+        <!-- Input -->
+<section class="suggestions-section" aria-label="Suggested anatomy questions">
+    <div class="suggestions-heading">
+        <span class="suggestions-eyebrow">QUICK START</span>
+        <h3>What would you like to learn today?</h3>
+        <p>Choose a topic to start learning with your AI tutor.</p>
+    </div>
+
+    <div class="suggested-questions">
+        <button class="suggestion suggestion-blue" type="button">
+            <span class="suggestion-icon">🧠</span>
+            <span class="suggestion-copy">
+                <strong>Brachial plexus</strong>
+                <small>Roots, trunks, divisions and branches</small>
+            </span>
+            <span class="suggestion-arrow">↗</span>
+        </button>
+
+        <button class="suggestion suggestion-green" type="button">
+            <span class="suggestion-icon">🩺</span>
+            <span class="suggestion-copy">
+                <strong>The nephron</strong>
+                <small>Filtration and urine formation</small>
+            </span>
+            <span class="suggestion-arrow">↗</span>
+        </button>
+
+        <button class="suggestion suggestion-orange" type="button">
+            <span class="suggestion-icon">🩸</span>
+            <span class="suggestion-copy">
+                <strong>External carotid artery</strong>
+                <small>Learn its eight branches</small>
+            </span>
+            <span class="suggestion-arrow">↗</span>
+        </button>
+
+        <button class="suggestion suggestion-purple" type="button">
+            <span class="suggestion-icon">📝</span>
+            <span class="suggestion-copy">
+                <strong>10 anatomy MCQs</strong>
+                <small>Test your knowledge</small>
+            </span>
+            <span class="suggestion-arrow">↗</span>
+        </button>
+    </div>
+</section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        AnatomyMate.ai • Your AI Human Anatomy Tutor
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
