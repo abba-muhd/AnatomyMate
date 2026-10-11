@@ -1089,3 +1089,426 @@ body {
         padding: 14px;
     }
 }
+
+/* =========================================
+   AnatomyMate.ai — Visual Enhancement Layer
+   Keeps existing application behavior intact
+   ========================================= */
+
+:root {
+    --am-primary: #155e75;
+    --am-primary-dark: #164e63;
+    --am-accent: #0d9488;
+    --am-page: #f3f7fa;
+    --am-surface: #ffffff;
+    --am-text: #172b3a;
+    --am-muted: #64748b;
+    --am-border: #dce6ed;
+    --am-shadow: 0 12px 32px rgba(15, 55, 75, 0.07);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--am-page);
+    color: var(--am-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(13, 148, 136, 0.3);
+    outline-offset: 2px;
+}
+
+/* Header */
+.header {
+    min-height: 76px;
+    height: auto;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom-color: var(--am-border);
+    box-shadow: 0 2px 12px rgba(15, 55, 75, 0.035);
+    backdrop-filter: blur(12px);
+}
+
+.logo-icon {
+    background: linear-gradient(135deg, var(--am-primary), var(--am-accent));
+    box-shadow: 0 5px 12px rgba(13, 148, 136, 0.18);
+}
+
+.logo h1 {
+    color: var(--am-text);
+    letter-spacing: -0.5px;
+}
+
+.logo span,
+.hero h2 span {
+    color: var(--am-accent);
+}
+
+.logo p {
+    margin-top: 1px;
+    color: var(--am-muted);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.student-welcome {
+    color: var(--am-muted);
+    font-size: 14px;
+}
+
+/* Buttons */
+#logout-button,
+#admin-refresh-button,
+#start-quiz,
+#next-question,
+.auth-submit {
+    border: 0;
+    border-radius: 11px;
+    background: var(--am-primary);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#logout-button,
+#admin-refresh-button {
+    padding: 10px 16px;
+}
+
+#logout-button:hover,
+#admin-refresh-button:hover,
+#start-quiz:hover,
+#next-question:hover,
+.auth-submit:hover {
+    background: var(--am-primary-dark);
+    box-shadow: 0 5px 14px rgba(21, 94, 117, 0.15);
+}
+
+/* Welcome area */
+.hero {
+    padding-top: 64px;
+    padding-bottom: 34px;
+}
+
+.hero .badge {
+    background: #dff5f1;
+    color: #0f766e;
+    border: 1px solid #c3ebe4;
+    letter-spacing: 0.2px;
+}
+
+.hero h2 {
+    color: var(--am-text);
+    letter-spacing: -1.5px;
+}
+
+.hero p {
+    color: var(--am-muted);
+}
+
+/* Anatomy topic cards */
+.topics {
+    gap: 18px;
+    margin-top: 24px;
+    margin-bottom: 34px;
+}
+
+.topic-card {
+    border-color: var(--am-border);
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(15, 55, 75, 0.025);
+}
+
+.topic-card:hover {
+    border-color: #81cfc5;
+    box-shadow: var(--am-shadow);
+    transform: translateY(-4px);
+}
+
+.topic-card .icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 14px;
+    background: #e6f6f3;
+}
+
+.topic-card h3 {
+    color: var(--am-text);
+    font-size: 16px;
+}
+
+.topic-card p {
+    color: var(--am-muted);
+    line-height: 1.6;
+}
+
+/* AI chat panel */
+.chat-container {
+    border-color: var(--am-border);
+    border-radius: 22px;
+    box-shadow: var(--am-shadow);
+}
+
+.chat-header {
+    background: #ffffff;
+}
+
+.status-dot {
+    flex: 0 0 auto;
+    box-shadow: 0 0 0 4px #dcfce7;
+}
+
+#chat-messages {
+    background: #ffffff;
+}
+
+.message {
+    overflow-wrap: anywhere;
+}
+
+.message.user {
+    background: var(--am-primary);
+}
+
+.message.bot {
+    background: #f1f6f8;
+}
+
+.message.bot blockquote {
+    border-left-color: var(--am-accent);
+}
+
+#user-input {
+    border-color: var(--am-border);
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+#user-input:focus {
+    border-color: var(--am-accent);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+#chat-form button {
+    border-radius: 12px;
+    background: var(--am-primary);
+}
+
+#chat-form button:hover {
+    background: var(--am-primary-dark);
+}
+
+/* Login and registration */
+.auth-section {
+    background:
+        radial-gradient(ellipse at top left, #d8f3ef 0%, transparent 48%),
+        linear-gradient(135deg, #f1f7fa, #f8fafc 65%, #e7f4f4);
+}
+
+.auth-card {
+    border-color: rgba(220, 230, 237, 0.9);
+    border-radius: 24px;
+    box-shadow: 0 24px 65px rgba(15, 55, 75, 0.1);
+}
+
+.auth-card h1 {
+    color: var(--am-primary);
+    letter-spacing: -0.7px;
+}
+
+.auth-tabs {
+    background: #edf3f6;
+}
+
+.auth-tab {
+    transition: background-color 180ms ease, color 180ms ease;
+}
+
+.auth-tab.active {
+    background: var(--am-primary);
+    box-shadow: 0 4px 10px rgba(21, 94, 117, 0.15);
+}
+
+#login-form input,
+#register-form input {
+    border-color: var(--am-border);
+    border-radius: 11px;
+    background: #fbfdfe;
+}
+
+#login-form input:focus,
+#register-form input:focus {
+    border-color: var(--am-accent);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.auth-submit {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 18px;
+}
+
+/* Quiz */
+.quiz-container {
+    border-color: var(--am-border);
+    border-radius: 18px;
+    background: #f8fbfc;
+}
+
+.quiz-option {
+    border-color: var(--am-border);
+    border-radius: 12px;
+}
+
+.quiz-option:hover:not(:disabled) {
+    border-color: #81cfc5;
+    background: #eaf8f5;
+}
+
+#start-quiz,
+#next-question {
+    background: var(--am-primary);
+}
+
+/* Admin dashboard */
+.admin-dashboard {
+    width: min(1000px, 90%);
+    border-color: var(--am-border);
+    border-radius: 18px;
+    box-shadow: var(--am-shadow);
+}
+
+.admin-summary-card {
+    background: #eaf7f5;
+}
+
+.admin-summary-card strong {
+    color: var(--am-primary);
+}
+
+#admin-student-search {
+    max-width: 100%;
+    border-color: var(--am-border);
+    border-radius: 11px;
+}
+
+.admin-students-table th {
+    background: #f1f7f9;
+    color: var(--am-primary-dark);
+}
+
+.admin-students-table th,
+.admin-students-table td {
+    border-bottom-color: var(--am-border);
+}
+
+/* Small screens */
+@media (max-width: 700px) {
+    .header {
+        padding: 12px 20px;
+        gap: 12px;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .student-welcome {
+        font-size: 12px;
+    }
+
+    #logout-button {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 42px 20px 24px;
+    }
+
+    .hero h2 {
+        letter-spacing: -0.7px;
+    }
+
+    .topics {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .topic-card {
+        min-width: 0;
+    }
+
+    .admin-dashboard {
+        width: 94%;
+    }
+}
+
+@media (max-width: 450px) {
+    .auth-section {
+        padding: 16px;
+    }
+
+    .auth-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .chat-container {
+        width: 94%;
+    }
+
+    #chat-form {
+        gap: 8px;
+    }
+
+    #user-input {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
